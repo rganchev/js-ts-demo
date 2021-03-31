@@ -3,7 +3,9 @@ import path from 'path';
 import { FileUtils } from './file-utils.js';
 
 class Main {
-  constructor(fileUtils) {
+  private files: string[];
+
+  constructor(private fileUtils: FileUtils) {
     const fileNames = fs.readdirSync('./data');
     this.files = fileNames.map(fileName => path.join('./data', fileName))
     this.fileUtils = fileUtils;
