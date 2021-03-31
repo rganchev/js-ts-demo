@@ -9,11 +9,13 @@ class Main {
     this.fileUtils = fileUtils;
   }
 
-  run() {
-    const promise = this.fileUtils.concat(this.files);
-    promise
-      .then(data => console.log(data))
-      .catch(error => console.error(error));
+  async run() {
+    try {
+      const data = await this.fileUtils.concat(this.files);
+      console.log(data);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

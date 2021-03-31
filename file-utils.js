@@ -7,9 +7,9 @@ export class FileUtils {
       .join('');
   }
 
-  concat(files) {
+  async concat(files) {
     const promises = files.map(file => fs.promises.readFile(file));
-    return Promise.all(promises)
-      .then(fileContents => fileContents.join(''));
+    const fileContents = await Promise.all(promises);
+    return fileContents.join('');
   }
 }
