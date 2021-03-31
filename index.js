@@ -10,13 +10,10 @@ class Main {
   }
 
   run() {
-    this.fileUtils.concat(this.files, (error, data) => {
-      if (error) {
-        console.error(error);
-      } else {
-        console.log(data);
-      }
-    });
+    const promise = this.fileUtils.concat(this.files);
+    promise
+      .then(data => console.log(data))
+      .catch(error => console.error(error));
   }
 }
 

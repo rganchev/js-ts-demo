@@ -7,22 +7,9 @@ export class FileUtils {
       .join('');
   }
 
-  concat(files, callback) {
-    const result = [];
-    let counter = 0;
-    files.forEach((file, index) => {
-      fs.readFile(file, (error, data) => {
-        if (error) {
-          callback(error, null);
-          return;
-        }
-
-        result[index] = data;
-        counter++;
-        if (files.length === counter) {
-          callback(null, result.join(''));
-        }
-      });
-    });
+  concat(files) {
+    const promises = files.map(file => fs.promises.readFile(file));
+    return Promise.all(promises)
+      .then(fileContents => fileContents.join(''));
   }
 }
