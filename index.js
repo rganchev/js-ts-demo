@@ -10,7 +10,13 @@ class Main {
   }
 
   run() {
-    console.log(this.fileUtils.concat(this.files));
+    this.fileUtils.concat(this.files, (error, data) => {
+      if (error) {
+        console.error(error);
+      } else {
+        console.log(data);
+      }
+    });
   }
 }
 
